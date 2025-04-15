@@ -1,0 +1,42 @@
+<div class="user-form-container">
+  <h3>Adicionar Novo Usuário</h3>
+  
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-form">
+    <div class="form-group">
+      <label for="name">Nome:</label>
+      <input 
+        id="name" 
+        type="text" 
+        formControlName="name"
+        [class.invalid]="userForm.get('name')?.invalid && userForm.get('name')?.touched">
+      <div *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched" class="error-message">
+        <div *ngIf="userForm.get('name')?.errors?.['required']">Nome é obrigatório</div>
+        <div *ngIf="userForm.get('name')?.errors?.['minlength']">Nome deve ter pelo menos 3 caracteres</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input 
+        id="email" 
+        type="email" 
+        formControlName="email"
+        [class.invalid]="userForm.get('email')?.invalid && userForm.get('email')?.touched">
+      <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="error-message">
+        <div *ngIf="userForm.get('email')?.errors?.['required']">Email é obrigatório</div>
+        <div *ngIf="userForm.get('email')?.errors?.['email']">Email inválido</div>
+      </div>
+    </div>
+
+    <div *ngIf="errorMessage" class="form-error">
+      {{ errorMessage }}
+    </div>
+
+    <button 
+      type="submit" 
+      class="submit-button"
+      [disabled]="userForm.invalid || isSubmitting">
+      {{ isSubmitting ? 'Adicionando...' : 'Adicionar Usuário' }}
+    </button>
+  </form>
+</div>

@@ -1,0 +1,44 @@
+<div class="user-list-container">
+  <h2>Lista de Usuários</h2>
+  
+  <!-- Mensagem de erro -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Estado de carregamento -->
+  <div *ngIf="isLoading" class="loading">
+    <p>Carregando usuários...</p>
+  </div>
+
+  <!-- Lista vazia -->
+  <div *ngIf="!isLoading && users.length === 0" class="no-users">
+    Nenhum usuário cadastrado.
+  </div>
+
+  <!-- Tabela de usuários -->
+  <table *ngIf="!isLoading && users.length > 0" class="user-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          <button (click)="deleteUser(user.id!)" class="delete-button">
+            Excluir
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <app-user-form (userAdded)="handleAddUser($event)"></app-user-form>
+</div>
