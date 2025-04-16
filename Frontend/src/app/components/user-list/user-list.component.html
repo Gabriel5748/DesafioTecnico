@@ -1,22 +1,18 @@
 <div class="user-list-container">
   <h2>Lista de Usuários</h2>
   
-  <!-- Mensagem de erro -->
   <div *ngIf="errorMessage" class="error-message">
     {{ errorMessage }}
   </div>
 
-  <!-- Estado de carregamento -->
   <div *ngIf="isLoading" class="loading">
     <p>Carregando usuários...</p>
   </div>
 
-  <!-- Lista vazia -->
   <div *ngIf="!isLoading && users.length === 0" class="no-users">
     Nenhum usuário cadastrado.
   </div>
 
-  <!-- Tabela de usuários -->
   <table *ngIf="!isLoading && users.length > 0" class="user-table">
     <thead>
       <tr>
