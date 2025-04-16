@@ -5,7 +5,7 @@ const mostrarUsuarios = (req, res) => {
 }
 
 const criarUsuario = (req, res) => {
-    const { name, email } = req.body; // Alterado de 'nome' para 'name'
+    const { name, email } = req.body;
     
     if (!name || !email) {
         return res.status(400).json({ erro: 'Name e email são obrigatórios' });
@@ -13,7 +13,7 @@ const criarUsuario = (req, res) => {
 
     const novoUsuario = { 
         id: usuarios.length + 1, 
-        name,  // Mantido como 'name'
+        name,
         email 
     };
     
